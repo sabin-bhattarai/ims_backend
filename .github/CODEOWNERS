@@ -1,0 +1,28 @@
+# Every pull request needs a review from a code owner. Branch protection on
+# `dev` and `main` enforces this.
+#
+# Replace these placeholders with real GitHub teams or usernames before
+# enabling protection, or GitHub will silently require nothing.
+
+*                       @sabin-bhattarai
+
+# The API contract is shared with ims-web and ims-mobile: a change here breaks
+# both clients, so it gets extra eyes.
+/docs/openapi.yaml      @sabin-bhattarai
+/docs/swagger.json      @sabin-bhattarai
+
+# Schema changes are effectively irreversible in production.
+/migrations/            @sabin-bhattarai
+
+# Anything that can move stock or money.
+/internal/stock/        @sabin-bhattarai
+/internal/purchasing/   @sabin-bhattarai
+/internal/sales/        @sabin-bhattarai
+
+# Auth and RBAC.
+/internal/auth/         @sabin-bhattarai
+/internal/middleware/   @sabin-bhattarai
+
+# Deployment and CI.
+/deploy/                @sabin-bhattarai
+/.github/               @sabin-bhattarai

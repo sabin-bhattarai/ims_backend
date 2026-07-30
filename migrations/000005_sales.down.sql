@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS sales_return_lines;
+DROP TABLE IF EXISTS sales_returns;
+DROP TABLE IF EXISTS invoices;
+DROP TABLE IF EXISTS sales_order_lines;
+DROP TABLE IF EXISTS sales_orders;
+DROP TABLE IF EXISTS customers;
+DROP TYPE IF EXISTS return_status;
+DROP TYPE IF EXISTS invoice_status;
+DROP TYPE IF EXISTS sales_order_status;

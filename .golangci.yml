@@ -1,0 +1,55 @@
+# Lint configuration shared by `make lint` and CI.
+version: "2"
+
+run:
+  timeout: 5m
+  # Integration-tagged files must be linted too, or they rot silently.
+  build-tags:
+    - integration
+
+linters:
+  enable:
+    - errcheck      # unchecked errors are how audit rows quietly go missing
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - bodyclose     # a leaked response body leaks a connection
+    - errorlint     # enforces errors.Is/As over == and type assertions
+    - gosec
+    - misspell
+    - nilerr
+    - noctx         # every outbound call must carry a context
+    - rowserrcheck
+    - sqlclosecheck
+    - unconvert
+    - whitespace
+
+  settings:
+    errcheck:
+      # Cache and audit writes are deliberately best-effort; the code logs them.
+      exclude-functions:
+        - (*github.com/gofiber/fiber/v2.Ctx).BodyParser
+    gosec:
+      excludes:
+        # G404: the only math/rand use is test-data shuffling, not crypto.
+        - G404
+    staticcheck:
+      checks:
+        - all
+
+  exclusions:
+    rules:
+      # Tests may ignore errors and use long lines for table fixtures.
+      - path: _test\.go
+        linters:
+          - errcheck
+          - gosec
+      # Generated swagger bindings are not ours to lint.
+      - path: docs/
+        linters:
+          - all
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0

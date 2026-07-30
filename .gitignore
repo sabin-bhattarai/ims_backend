@@ -1,0 +1,27 @@
+# Secrets — never commit a real environment file
+.env
+.env.*
+!.env.example
+
+# Build output
+bin/
+dist/
+/api
+/worker
+/seed
+
+# Test and coverage artefacts
+coverage.out
+coverage.html
+*.test
+
+# Generated swagger Go binding (the .yaml/.json specs ARE committed:
+# they are the contract the web and mobile clients generate from)
+docs/docs.go
+
+# Editor and OS noise
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+*.swp

@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS cycle_count_lines;
+DROP TABLE IF EXISTS cycle_counts;
+DROP TABLE IF EXISTS stock_transfer_lines;
+DROP TABLE IF EXISTS stock_transfers;
+DROP TABLE IF EXISTS cost_layers;
+DROP TABLE IF EXISTS stock_movements;
+DROP TABLE IF EXISTS stock_items;
+DROP TABLE IF EXISTS batches;
+DROP TABLE IF EXISTS locations;
+DROP TABLE IF EXISTS warehouses;
+DROP TYPE IF EXISTS cycle_count_status;
+DROP TYPE IF EXISTS transfer_status;
+DROP TYPE IF EXISTS movement_type;
+DROP TYPE IF EXISTS location_kind;

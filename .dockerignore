@@ -1,0 +1,14 @@
+.git
+.github
+.env
+.env.*
+!.env.example
+bin/
+dist/
+coverage.out
+*.test
+.idea/
+.vscode/
+.DS_Store
+README.md
+CONTRIBUTING.md

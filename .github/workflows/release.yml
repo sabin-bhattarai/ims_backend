@@ -1,0 +1,20 @@
+name: Release
+
+# release-please keeps CHANGELOG.md and the version tag in step with the
+# Conventional Commits that landed on main.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          release-type: go
+          package-name: ims-backend

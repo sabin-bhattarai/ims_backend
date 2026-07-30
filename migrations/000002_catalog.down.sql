@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS product_images;
+DROP TABLE IF EXISTS product_variants;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS suppliers;
+DROP TABLE IF EXISTS units;
+DROP TABLE IF EXISTS categories;

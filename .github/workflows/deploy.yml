@@ -1,0 +1,104 @@
+name: Deploy
+
+# Staging deploys automatically from dev. Production only ever deploys from a
+# tagged release, and only after the staging smoke test has passed.
+on:
+  push:
+    branches: [dev]
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        required: true
+        type: choice
+        options: [staging, production]
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  migrate-and-deploy:
+    name: Deploy ${{ github.ref_type == 'tag' && 'production' || 'staging' }}
+    runs-on: ubuntu-latest
+    # GitHub Environments hold the per-environment secrets and any required
+    # reviewers, which is what gates production behind a human.
+    environment:
+      name: ${{ github.event.inputs.environment || (github.ref_type == 'tag' && 'production' || 'staging') }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+          cache: true
+
+      # Migrations run once, as their own step — never on API boot, where N
+      # replicas would race each other.
+      - name: Apply database migrations
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          curl -sSL https://github.com/golang-migrate/migrate/releases/download/v4.17.1/migrate.linux-amd64.tar.gz \
+            | tar xz migrate
+          ./migrate -path migrations -database "$DATABASE_URL" up
+
+      - name: Deploy
+        env:
+          IMAGE: ghcr.io/${{ github.repository }}:sha-${{ github.sha }}
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+          NAMESPACE: ${{ vars.K8S_NAMESPACE }}
+        run: |
+          # Replace this step with the real target for your infrastructure
+          # (kubectl / ECS / Fly). It must be a rolling update so that the
+          # graceful-shutdown path in cmd/api actually gets used.
+          echo "Deploying $IMAGE to ${NAMESPACE:-ims}"
+          if [ -z "$KUBE_CONFIG" ]; then
+            echo "::warning::KUBE_CONFIG is not set for this environment; skipping the apply step"
+            exit 0
+          fi
+          mkdir -p ~/.kube && echo "$KUBE_CONFIG" | base64 -d > ~/.kube/config
+          kubectl -n "${NAMESPACE:-ims}" set image deployment/ims-api api="$IMAGE"
+          kubectl -n "${NAMESPACE:-ims}" set image deployment/ims-worker worker="$IMAGE"
+          kubectl -n "${NAMESPACE:-ims}" rollout status deployment/ims-api --timeout=5m
+
+      - name: Verify the deployment is serving
+        env:
+          BASE_URL: ${{ vars.API_BASE_URL }}
+        run: |
+          [ -z "$BASE_URL" ] && { echo "::warning::API_BASE_URL not set; skipping"; exit 0; }
+          for i in $(seq 1 20); do
+            if curl -fsS "$BASE_URL/health/ready" | grep -qE '"status":"(ok|degraded)"'; then
+              echo "deployment is serving"; exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::health check never passed"
+          exit 1
+
+      - name: Roll back on failure
+        if: failure()
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+          NAMESPACE: ${{ vars.K8S_NAMESPACE }}
+        run: |
+          [ -z "$KUBE_CONFIG" ] && exit 0
+          # A failed health check means the new revision is bad; put the previous
+          # one back rather than leaving the service down.
+          kubectl -n "${NAMESPACE:-ims}" rollout undo deployment/ims-api
+          kubectl -n "${NAMESPACE:-ims}" rollout undo deployment/ims-worker
+
+      - name: Notify the team channel
+        if: always()
+        env:
+          WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          [ -z "$WEBHOOK" ] && exit 0
+          curl -fsS -X POST -H 'Content-Type: application/json' \
+            -d "{\"text\":\"ims-backend deploy *${{ job.status }}* → ${{ github.ref_name }}\"}" \
+            "$WEBHOOK" || true
