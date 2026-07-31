@@ -443,3 +443,99 @@ func isUniqueViolation(err error) bool {
 	msg := err.Error()
 	return strings.Contains(msg, "SQLSTATE 23505") || strings.Contains(msg, "duplicate key value")
 }
+
+// Issue removes stock from a warehouse without the caller naming a location.
+//
+// This exists because outbound work does not know which bin holds the goods.
+// A sales order says "ship 12 of SKU-1 from MAIN"; the stock may be spread over
+// three bins and two batches. Apply matches one exact coordinate, so calling it
+// with a nil location would look for a warehouse-level row — which is usually
+// empty, making bin-located stock unshippable.
+//
+// Consumption order is oldest-expiry-first, then oldest row: for perishables
+// that is FEFO, which is what a warehouse actually picks, and it keeps lock
+// acquisition deterministic so two concurrent issues cannot deadlock.
+//
+// Returns one movement per source row, and the total FIFO cost of the goods
+// removed. tx MUST be a transaction.
+func (l *Ledger) Issue(ctx context.Context, tx *gorm.DB, req MovementRequest) ([]*MovementResult, money.Decimal, error) {
+	if !money.IsNegative(req.Delta) {
+		return nil, money.Zero(), shared.Validation("an issue needs a negative quantity")
+	}
+
+	// A caller that named a coordinate means it; honour it exactly.
+	if req.LocationID != nil || req.BatchID != nil {
+		result, err := l.Apply(ctx, tx, req)
+		if err != nil {
+			return nil, money.Zero(), err
+		}
+		return []*MovementResult{result}, result.COGS, nil
+	}
+
+	var candidates []Item
+	q := tx.WithContext(ctx).
+		// Lock only stock_items: Postgres refuses FOR UPDATE on the nullable side
+		// of the outer join to batches, which is joined purely to order by expiry.
+		Clauses(clause.Locking{Strength: "UPDATE", Table: clause.Table{Name: "si"}}).
+		Table("stock_items si").
+		Select("si.*").
+		Joins("LEFT JOIN batches b ON b.id = si.batch_id").
+		Where(`si.organization_id = ? AND si.product_id = ? AND si.warehouse_id = ?
+		       AND si.quantity > si.reserved_quantity`,
+			req.OrgID, req.ProductID, req.WarehouseID).
+		Order("b.expiry_date ASC NULLS LAST, si.created_at ASC")
+	q = nullableEq(q, "si.variant_id", req.VariantID)
+
+	if err := q.Find(&candidates).Error; err != nil {
+		return nil, money.Zero(), fmt.Errorf("load stock for issue: %w", err)
+	}
+
+	// Report the shortfall against what is actually issuable, so the message the
+	// client shows matches what a picker would find on the shelf.
+	available := money.Zero()
+	for _, item := range candidates {
+		available = available.Add(item.Available())
+	}
+	wanted := req.Delta.Abs()
+	if available.LessThan(wanted) {
+		return nil, money.Zero(), shared.InsufficientStock(
+			available.InexactFloat64(), wanted.InexactFloat64())
+	}
+
+	results := make([]*MovementResult, 0, len(candidates))
+	cogs := money.Zero()
+	remaining := wanted
+
+	for i := range candidates {
+		if !money.IsPositive(remaining) {
+			break
+		}
+		item := candidates[i]
+		take := money.Min(item.Available(), remaining)
+		if !money.IsPositive(take) {
+			continue
+		}
+
+		// One ledger row per source coordinate, so the audit trail records which
+		// bin and batch the goods actually left.
+		lineReq := req
+		lineReq.LocationID = item.LocationID
+		lineReq.BatchID = item.BatchID
+		lineReq.Delta = take.Neg()
+		// The idempotency key belongs to the whole issue, not to each line; only
+		// the first line carries it so a retry is still recognised.
+		if i > 0 {
+			lineReq.ClientRequestID = ""
+		}
+
+		result, err := l.Apply(ctx, tx, lineReq)
+		if err != nil {
+			return nil, money.Zero(), err
+		}
+		results = append(results, result)
+		cogs = cogs.Add(result.COGS)
+		remaining = remaining.Sub(take)
+	}
+
+	return results, money.Round(cogs), nil
+}

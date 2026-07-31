@@ -105,7 +105,21 @@ func (s *Service) Adjust(ctx context.Context, actor auth.Identity, in AdjustInpu
 	var result *MovementResult
 	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		var err error
-		result, err = s.ledger.Apply(ctx, tx, req)
+		if money.IsNegative(req.Delta) && in.LocationID == nil {
+			// Removing stock without naming a bin: draw from wherever it sits.
+			// Using Apply here would look for a warehouse-level row and report
+			// "insufficient stock" while the goods are on a shelf — which is the
+			// normal case after a goods receipt into a location.
+			var results []*MovementResult
+			results, _, err = s.ledger.Issue(ctx, tx, req)
+			if err != nil {
+				return err
+			}
+			// The first line carries the idempotency key and the audit before/after.
+			result = results[0]
+		} else {
+			result, err = s.ledger.Apply(ctx, tx, req)
+		}
 		if err != nil {
 			return err
 		}
@@ -835,6 +849,14 @@ func (s *Service) ListCycleCounts(ctx context.Context, actor auth.Identity, q sh
 // dispatch) so they can move stock inside their own transaction.
 func (s *Service) ApplyInTx(ctx context.Context, tx *gorm.DB, req MovementRequest) (*MovementResult, error) {
 	return s.ledger.Apply(ctx, tx, req)
+}
+
+// IssueInTx removes stock from a warehouse without naming a bin, drawing from
+// whichever locations and batches hold it. Outbound callers (sales dispatch,
+// transfer dispatch) use this rather than ApplyInTx, because they know the
+// warehouse but not the shelf.
+func (s *Service) IssueInTx(ctx context.Context, tx *gorm.DB, req MovementRequest) ([]*MovementResult, money.Decimal, error) {
+	return s.ledger.Issue(ctx, tx, req)
 }
 
 // Reserve allocates on-hand stock to a confirmed order without moving it.

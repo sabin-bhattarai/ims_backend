@@ -379,7 +379,7 @@ func run() error {
 
 		// Issue the stock so there is outbound movement history to report on.
 		for _, line := range soLines {
-			result, err := ledger.Apply(ctx, tx, stock.MovementRequest{
+			_, cogs, err := ledger.Issue(ctx, tx, stock.MovementRequest{
 				OrgID: org.ID, Type: stock.MovementOut,
 				ProductID: line.ProductID, WarehouseID: warehouses[0].ID,
 				Delta:         line.Quantity.Neg(),
@@ -392,7 +392,7 @@ func run() error {
 				return err
 			}
 			if err := tx.Model(&sales.OrderLine{}).Where("id = ?", line.ID).Updates(map[string]any{
-				"quantity_shipped": line.Quantity, "cogs_total": result.COGS,
+				"quantity_shipped": line.Quantity, "cogs_total": cogs,
 			}).Error; err != nil {
 				return err
 			}
