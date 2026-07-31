@@ -6,8 +6,8 @@ import (
 	"github.com/google/uuid"
 	"gorm.io/datatypes"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
-	"github.com/sabin-bhattarai/ims-backend/pkg/money"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/pkg/money"
 )
 
 // Category groups products into an arbitrary-depth tree.

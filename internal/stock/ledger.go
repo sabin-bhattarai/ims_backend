@@ -11,8 +11,8 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
-	"github.com/sabin-bhattarai/ims-backend/pkg/money"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/pkg/money"
 )
 
 // MovementRequest describes one stock change to apply. Every quantity change

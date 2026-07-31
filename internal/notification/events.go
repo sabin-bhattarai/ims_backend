@@ -6,9 +6,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/auth"
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
-	"github.com/sabin-bhattarai/ims-backend/pkg/money"
+	"github.com/sabin-bhattarai/ims_backend/internal/auth"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/pkg/money"
 )
 
 // This file holds the adapters that satisfy the Notifier interfaces declared by

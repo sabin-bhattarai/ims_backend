@@ -13,8 +13,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/rs/zerolog"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/auth"
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/internal/auth"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
 )
 
 // RequestIDHeader is echoed on every response and included in every log line,

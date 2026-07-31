@@ -11,8 +11,8 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/platform"
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/internal/platform"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
 )
 
 // Claims is the access-token payload. Organization and role travel in the

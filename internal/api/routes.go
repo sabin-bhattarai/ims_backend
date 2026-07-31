@@ -10,17 +10,17 @@ import (
 	"github.com/rs/zerolog"
 	"gorm.io/gorm"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/auth"
-	"github.com/sabin-bhattarai/ims-backend/internal/middleware"
-	"github.com/sabin-bhattarai/ims-backend/internal/notification"
-	"github.com/sabin-bhattarai/ims-backend/internal/platform"
-	"github.com/sabin-bhattarai/ims-backend/internal/product"
-	"github.com/sabin-bhattarai/ims-backend/internal/purchasing"
-	"github.com/sabin-bhattarai/ims-backend/internal/reporting"
-	"github.com/sabin-bhattarai/ims-backend/internal/sales"
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
-	"github.com/sabin-bhattarai/ims-backend/internal/stock"
-	"github.com/sabin-bhattarai/ims-backend/internal/warehouse"
+	"github.com/sabin-bhattarai/ims_backend/internal/auth"
+	"github.com/sabin-bhattarai/ims_backend/internal/middleware"
+	"github.com/sabin-bhattarai/ims_backend/internal/notification"
+	"github.com/sabin-bhattarai/ims_backend/internal/platform"
+	"github.com/sabin-bhattarai/ims_backend/internal/product"
+	"github.com/sabin-bhattarai/ims_backend/internal/purchasing"
+	"github.com/sabin-bhattarai/ims_backend/internal/reporting"
+	"github.com/sabin-bhattarai/ims_backend/internal/sales"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/internal/stock"
+	"github.com/sabin-bhattarai/ims_backend/internal/warehouse"
 )
 
 // Version is stamped at build time via -ldflags.

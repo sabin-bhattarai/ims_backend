@@ -10,9 +10,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/auth"
-	"github.com/sabin-bhattarai/ims-backend/internal/platform"
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/internal/auth"
+	"github.com/sabin-bhattarai/ims_backend/internal/platform"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
 )
 
 const testSecret = "test-secret-that-is-long-enough-for-hs256"

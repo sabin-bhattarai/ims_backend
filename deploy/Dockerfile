@@ -23,7 +23,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
     CGO_ENABLED=0 GOOS=linux go build \
       -trimpath \
-      -ldflags="-s -w -X github.com/sabin-bhattarai/ims-backend/internal/api.Version=${VERSION}" \
+      -ldflags="-s -w -X github.com/sabin-bhattarai/ims_backend/internal/api.Version=${VERSION}" \
       -o /out/api ./cmd/api \
  && CGO_ENABLED=0 GOOS=linux go build \
       -trimpath -ldflags="-s -w" \

@@ -21,9 +21,9 @@ import (
 
 	// Imported for its side effect: registering the generated OpenAPI spec that
 	// /docs serves. Regenerate with `make docs`.
-	_ "github.com/sabin-bhattarai/ims-backend/docs"
-	"github.com/sabin-bhattarai/ims-backend/internal/api"
-	"github.com/sabin-bhattarai/ims-backend/internal/platform"
+	_ "github.com/sabin-bhattarai/ims_backend/docs"
+	"github.com/sabin-bhattarai/ims_backend/internal/api"
+	"github.com/sabin-bhattarai/ims_backend/internal/platform"
 )
 
 func main() {

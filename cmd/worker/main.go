@@ -15,8 +15,8 @@ import (
 
 	"github.com/hibiken/asynq"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/notification"
-	"github.com/sabin-bhattarai/ims-backend/internal/platform"
+	"github.com/sabin-bhattarai/ims_backend/internal/notification"
+	"github.com/sabin-bhattarai/ims_backend/internal/platform"
 )
 
 func main() {

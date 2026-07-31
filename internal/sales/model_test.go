@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/sales"
+	"github.com/sabin-bhattarai/ims_backend/internal/sales"
 )
 
 func TestSalesOrderStateMachine(t *testing.T) {

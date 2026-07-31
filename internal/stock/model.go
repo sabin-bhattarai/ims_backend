@@ -7,8 +7,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
-	"github.com/sabin-bhattarai/ims-backend/pkg/money"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/pkg/money"
 )
 
 // MovementType mirrors the movement_type enum.

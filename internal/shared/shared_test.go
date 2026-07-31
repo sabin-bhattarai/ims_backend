@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
 )
 
 // parseQueryFromURL spins up a throwaway Fiber handler so ParseQuery is

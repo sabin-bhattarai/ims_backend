@@ -27,8 +27,8 @@ import (
 	"github.com/testcontainers/testcontainers-go/modules/postgres"
 	"github.com/testcontainers/testcontainers-go/wait"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/api"
-	"github.com/sabin-bhattarai/ims-backend/internal/platform"
+	"github.com/sabin-bhattarai/ims_backend/internal/api"
+	"github.com/sabin-bhattarai/ims_backend/internal/platform"
 )
 
 // harness is a running application wired to a throwaway database.

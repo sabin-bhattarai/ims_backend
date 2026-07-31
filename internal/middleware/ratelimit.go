@@ -9,9 +9,9 @@ import (
 	"github.com/google/uuid"
 	"github.com/rs/zerolog"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/auth"
-	"github.com/sabin-bhattarai/ims-backend/internal/platform"
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/internal/auth"
+	"github.com/sabin-bhattarai/ims_backend/internal/platform"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
 )
 
 // RateLimitConfig configures a limiter instance.

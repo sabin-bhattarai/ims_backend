@@ -72,7 +72,8 @@ jobs:
         run: |
           swag init --generalInfo cmd/api/main.go --dir ./ --output docs \
             --outputTypes go,json,yaml --parseDependency --parseInternal
-          cp docs/swagger.yaml docs/openapi.yaml
+          # swaggo emits Swagger 2.0; the published contract is OpenAPI 3.0.
+          npx --yes swagger2openapi docs/swagger.yaml --yaml --outfile docs/openapi.yaml
           if ! git diff --exit-code -- docs/openapi.yaml docs/swagger.json; then
             echo "::error::The OpenAPI spec is out of date. Run 'make docs' and commit docs/."
             exit 1

@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/purchasing"
-	"github.com/sabin-bhattarai/ims-backend/pkg/money"
+	"github.com/sabin-bhattarai/ims_backend/internal/purchasing"
+	"github.com/sabin-bhattarai/ims_backend/pkg/money"
 )
 
 func TestPurchaseOrderStateMachine(t *testing.T) {

@@ -1,6 +1,6 @@
 basePath: /api/v1
 definitions:
-  github_com_sabin-bhattarai_ims-backend_internal_shared.Code:
+  github_com_sabin-bhattarai_ims_backend_internal_shared.Code:
     enum:
     - VALIDATION_ERROR
     - UNAUTHORIZED
@@ -24,27 +24,27 @@ definitions:
     - CodeUnavailable
     - CodeInsufficientStock
     - CodeInvalidTransition
-  github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope:
+  github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope:
     properties:
       data: {}
       meta: {}
     type: object
-  github_com_sabin-bhattarai_ims-backend_internal_shared.Error:
+  github_com_sabin-bhattarai_ims_backend_internal_shared.Error:
     properties:
       code:
-        $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Code'
+        $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Code'
       details:
         additionalProperties: {}
         type: object
       message:
         type: string
     type: object
-  github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope:
+  github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope:
     properties:
       error:
-        $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Error'
+        $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Error'
     type: object
-  github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta:
+  github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta:
     properties:
       page:
         type: integer
@@ -1956,7 +1956,7 @@ definitions:
       client_request_id:
         type: string
       error:
-        $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Error'
+        $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Error'
       movement_id:
         type: string
       status:
@@ -2235,7 +2235,7 @@ paths:
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Change password
@@ -2279,7 +2279,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_auth.SessionResponse'
@@ -2287,7 +2287,7 @@ paths:
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       summary: Log in
       tags:
       - auth
@@ -2326,7 +2326,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_auth.MeResponse'
@@ -2334,7 +2334,7 @@ paths:
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Current user
@@ -2357,7 +2357,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_auth.SessionResponse'
@@ -2365,7 +2365,7 @@ paths:
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       summary: Refresh a session
       tags:
       - auth
@@ -2388,7 +2388,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_auth.SessionResponse'
@@ -2396,11 +2396,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       summary: Register a new organization
       tags:
       - auth
@@ -2423,7 +2423,7 @@ paths:
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       summary: Reset a password with a token
       tags:
       - auth
@@ -2436,7 +2436,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
@@ -2465,7 +2465,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_product.Category'
@@ -2513,7 +2513,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_product.Category'
@@ -2532,14 +2532,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_sales.Customer'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -2563,7 +2563,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Customer'
@@ -2588,7 +2588,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Customer'
@@ -2620,7 +2620,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Customer'
@@ -2667,14 +2667,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_sales.Invoice'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -2704,7 +2704,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Invoice'
@@ -2728,14 +2728,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_notification.Notification'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -2776,7 +2776,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_notification.DeviceToken'
@@ -2850,14 +2850,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_product.Product'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -2881,7 +2881,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_product.Product'
@@ -2889,7 +2889,7 @@ paths:
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Create a product
@@ -2911,7 +2911,7 @@ paths:
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Delete a product
@@ -2931,7 +2931,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_product.Product'
@@ -2939,7 +2939,7 @@ paths:
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Get a product
@@ -2967,7 +2967,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_product.Product'
@@ -3000,7 +3000,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_product.Image'
@@ -3033,7 +3033,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_product.Variant'
@@ -3076,7 +3076,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_product.ScanResult'
@@ -3084,7 +3084,7 @@ paths:
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Scan a barcode
@@ -3104,14 +3104,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_purchasing.PurchaseOrder'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -3135,7 +3135,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_purchasing.PurchaseOrder'
@@ -3160,7 +3160,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_purchasing.PurchaseOrder'
@@ -3185,7 +3185,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_purchasing.PurchaseOrder'
@@ -3193,7 +3193,7 @@ paths:
         "403":
           description: Forbidden
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Approve a purchase order
@@ -3214,7 +3214,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_purchasing.PurchaseOrder'
@@ -3239,7 +3239,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
@@ -3276,7 +3276,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_purchasing.GoodsReceipt'
@@ -3284,7 +3284,7 @@ paths:
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Receive goods against a purchase order
@@ -3313,7 +3313,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_purchasing.PurchaseOrder'
@@ -3338,7 +3338,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_purchasing.PurchaseOrder'
@@ -3346,7 +3346,7 @@ paths:
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Submit a purchase order for approval
@@ -3361,7 +3361,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_reporting.Dashboard'
@@ -3380,7 +3380,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
@@ -3410,7 +3410,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
@@ -3452,7 +3452,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_reporting.ValuationReport'
@@ -3471,14 +3471,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_sales.Return'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -3502,7 +3502,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Return'
@@ -3535,7 +3535,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Return'
@@ -3560,7 +3560,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Return'
@@ -3584,14 +3584,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_sales.Order'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -3615,7 +3615,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Order'
@@ -3640,7 +3640,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Order'
@@ -3673,7 +3673,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Order'
@@ -3681,7 +3681,7 @@ paths:
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Advance a sales order's fulfilment status
@@ -3702,7 +3702,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Order'
@@ -3727,7 +3727,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Order'
@@ -3735,7 +3735,7 @@ paths:
         "409":
           description: Insufficient stock
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Confirm a sales order
@@ -3764,7 +3764,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Invoice'
@@ -3797,7 +3797,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_sales.Order'
@@ -3827,7 +3827,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_stock.MovementResult'
@@ -3835,7 +3835,7 @@ paths:
         "409":
           description: Insufficient stock
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Adjust stock
@@ -3855,14 +3855,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_stock.Batch'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -3886,7 +3886,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_stock.Batch'
@@ -3905,14 +3905,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_stock.CycleCount'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -3936,7 +3936,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_stock.CycleCount'
@@ -3961,7 +3961,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_stock.CycleCount'
@@ -3986,7 +3986,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_stock.CycleCount'
@@ -3994,7 +3994,7 @@ paths:
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Complete a cycle count
@@ -4023,7 +4023,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_stock.CycleCount'
@@ -4059,14 +4059,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_stock.ItemView'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -4091,14 +4091,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_stock.Movement'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -4125,7 +4125,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_stock.SyncResponse'
@@ -4144,14 +4144,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_stock.Transfer'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -4175,7 +4175,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_stock.Transfer'
@@ -4200,7 +4200,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_stock.Transfer'
@@ -4241,7 +4241,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_stock.Transfer'
@@ -4249,7 +4249,7 @@ paths:
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Dispatch a stock transfer
@@ -4270,7 +4270,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_stock.Transfer'
@@ -4289,14 +4289,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_purchasing.Supplier'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -4320,7 +4320,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_purchasing.Supplier'
@@ -4360,7 +4360,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_purchasing.Supplier'
@@ -4392,7 +4392,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_purchasing.Supplier'
@@ -4411,7 +4411,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
@@ -4440,7 +4440,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_product.Unit'
@@ -4476,14 +4476,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_auth.User'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -4507,7 +4507,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_auth.User'
@@ -4515,7 +4515,7 @@ paths:
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Create a user
@@ -4537,7 +4537,7 @@ paths:
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Delete a user
@@ -4565,7 +4565,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_auth.User'
@@ -4573,7 +4573,7 @@ paths:
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.ErrorEnvelope'
+            $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.ErrorEnvelope'
       security:
       - BearerAuth: []
       summary: Update a user
@@ -4588,14 +4588,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_auth.LoginAudit'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -4611,14 +4611,14 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
                     $ref: '#/definitions/internal_warehouse.Warehouse'
                   type: array
                 meta:
-                  $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.PageMeta'
+                  $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.PageMeta'
               type: object
       security:
       - BearerAuth: []
@@ -4642,7 +4642,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_warehouse.Warehouse'
@@ -4682,7 +4682,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_warehouse.Warehouse'
@@ -4714,7 +4714,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_warehouse.Warehouse'
@@ -4739,7 +4739,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   items:
@@ -4773,7 +4773,7 @@ paths:
           description: Created
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_sabin-bhattarai_ims-backend_internal_shared.Envelope'
+            - $ref: '#/definitions/github_com_sabin-bhattarai_ims_backend_internal_shared.Envelope'
             - properties:
                 data:
                   $ref: '#/definitions/internal_warehouse.Location'

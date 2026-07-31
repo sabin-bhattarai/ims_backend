@@ -3,8 +3,8 @@ package purchasing
 import (
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/auth"
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/internal/auth"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
 )
 
 // Handler exposes the purchasing HTTP endpoints.

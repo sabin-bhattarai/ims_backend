@@ -1,4 +1,4 @@
-module github.com/sabin-bhattarai/ims-backend
+module github.com/sabin-bhattarai/ims_backend
 
 go 1.26.5
 

@@ -18,15 +18,15 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/auth"
-	"github.com/sabin-bhattarai/ims-backend/internal/platform"
-	"github.com/sabin-bhattarai/ims-backend/internal/product"
-	"github.com/sabin-bhattarai/ims-backend/internal/purchasing"
-	"github.com/sabin-bhattarai/ims-backend/internal/sales"
-	"github.com/sabin-bhattarai/ims-backend/internal/shared"
-	"github.com/sabin-bhattarai/ims-backend/internal/stock"
-	"github.com/sabin-bhattarai/ims-backend/internal/warehouse"
-	"github.com/sabin-bhattarai/ims-backend/pkg/money"
+	"github.com/sabin-bhattarai/ims_backend/internal/auth"
+	"github.com/sabin-bhattarai/ims_backend/internal/platform"
+	"github.com/sabin-bhattarai/ims_backend/internal/product"
+	"github.com/sabin-bhattarai/ims_backend/internal/purchasing"
+	"github.com/sabin-bhattarai/ims_backend/internal/sales"
+	"github.com/sabin-bhattarai/ims_backend/internal/shared"
+	"github.com/sabin-bhattarai/ims_backend/internal/stock"
+	"github.com/sabin-bhattarai/ims_backend/internal/warehouse"
+	"github.com/sabin-bhattarai/ims_backend/pkg/money"
 )
 
 // demoPassword is shared by every seeded account. Development only — the

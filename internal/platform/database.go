@@ -14,7 +14,7 @@ import (
 	"gorm.io/gorm"
 	gormlogger "gorm.io/gorm/logger"
 
-	"github.com/sabin-bhattarai/ims-backend/migrations"
+	"github.com/sabin-bhattarai/ims_backend/migrations"
 )
 
 // NewDatabase opens the Postgres pool and verifies connectivity.

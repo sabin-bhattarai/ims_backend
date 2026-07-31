@@ -3,7 +3,7 @@ SHELL := /bin/bash
 
 COMPOSE := docker compose -f deploy/docker-compose.yml
 VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
-LDFLAGS := -s -w -X github.com/sabin-bhattarai/ims-backend/internal/api.Version=$(VERSION)
+LDFLAGS := -s -w -X github.com/sabin-bhattarai/ims_backend/internal/api.Version=$(VERSION)
 # The coverage gate CI enforces. Raise it as coverage improves; never lower it
 # to make a red build green.
 COVERAGE_MIN ?= 70
@@ -122,15 +122,18 @@ migrate-new: ## Create a migration pair: make migrate-new NAME=add_widgets
 .PHONY: docs
 docs: ## Regenerate the OpenAPI spec from code annotations
 	@command -v swag >/dev/null || { \
-		echo "swag not found: go install github.com/swaggo/swag/cmd/swag@latest"; exit 1; }
+		echo "swag not found: go install github.com/swaggo/swag/cmd/swag@v1.16.4"; exit 1; }
 	swag init \
 		--generalInfo cmd/api/main.go \
 		--dir ./ \
 		--output docs \
 		--outputTypes go,json,yaml \
 		--parseDependency --parseInternal
-	@echo "docs/swagger.yaml regenerated — copy to docs/openapi.yaml and commit both"
-	@cp docs/swagger.yaml docs/openapi.yaml
+	# swaggo emits Swagger 2.0, which is what the embedded Swagger UI serves.
+	# The clients generate from OpenAPI 3.0, so convert and publish that as the
+	# contract. Requires Node (npx), which CI already has.
+	npx --yes swagger2openapi docs/swagger.yaml --yaml --outfile docs/openapi.yaml
+	@echo "docs/openapi.yaml regenerated (OpenAPI 3.0) — commit docs/"
 
 .PHONY: docs-check
 docs-check: ## Fail if the committed spec is stale (CI guard)

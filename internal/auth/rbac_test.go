@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/sabin-bhattarai/ims-backend/internal/auth"
+	"github.com/sabin-bhattarai/ims_backend/internal/auth"
 )
 
 func TestRoleCanMatrix(t *testing.T) {
