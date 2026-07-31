@@ -33,7 +33,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
       -o /out/seed ./cmd/seed
 
 # --- runtime ---------------------------------------------------------------
-FROM alpine:3.20 AS runtime
+FROM alpine:3.24 AS runtime
 
 # wget serves the container healthcheck; tzdata so timestamps localise correctly.
 RUN apk add --no-cache ca-certificates tzdata wget \
