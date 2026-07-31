@@ -5,6 +5,13 @@
 //	@description	Inventory Management System REST API. Every response is wrapped in a `data` envelope; errors use an `error` envelope with a stable machine-readable code.
 //	@BasePath		/api/v1
 //
+//	Schemes must be declared explicitly: without them the generated spec carries
+//	an empty `schemes` array and Swagger UI cannot build a request URL, so "Try
+//	it out" fails in the browser without ever reaching the server. Host is left
+//	unset on purpose, so the UI uses whatever origin is serving it and the same
+//	spec works locally, in staging and in production.
+//	@schemes		http https
+//
 //	@securityDefinitions.apikey	BearerAuth
 //	@in							header
 //	@name						Authorization

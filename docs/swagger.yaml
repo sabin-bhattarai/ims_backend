@@ -4799,6 +4799,9 @@ paths:
       summary: Delete a warehouse location
       tags:
       - warehouses
+schemes:
+- http
+- https
 securityDefinitions:
   BearerAuth:
     description: Access token as "Bearer <token>". Obtain one from /auth/login and

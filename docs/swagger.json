@@ -1,4 +1,8 @@
 {
+    "schemes": [
+        "http",
+        "https"
+    ],
     "swagger": "2.0",
     "info": {
         "description": "Inventory Management System REST API. Every response is wrapped in a `data` envelope; errors use an `error` envelope with a stable machine-readable code.",
