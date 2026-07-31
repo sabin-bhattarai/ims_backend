@@ -108,7 +108,7 @@ jobs:
           echo "### Coverage: ${total}%" >> "$GITHUB_STEP_SUMMARY"
           awk -v t="$total" 'BEGIN { if (t+0 < 70) { print "::error::coverage " t "% is below the 70% gate"; exit 1 } }'
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: coverage
