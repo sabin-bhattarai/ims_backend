@@ -10,8 +10,8 @@ DTOs.
 | Repository | What it is |
 |---|---|
 | **ims-backend** (this repo) | Go + Fiber + PostgreSQL API. Owns `docs/openapi.yaml`. |
-| [`ims-web`](../ims-web) | React + TypeScript web client. |
-| [`ims-mobile`](../ims-mobile) | Flutter app for warehouse-floor scanning. |
+| [`ims_web`](https://github.com/sabin-bhattarai/ims_web) | React + TypeScript web client. |
+| [`ims_mobile`](https://github.com/sabin-bhattarai/ims_mobile) | Flutter app for warehouse-floor scanning. |
 
 Contract: [`docs/openapi.yaml`](docs/openapi.yaml) · Interactive docs: `http://localhost:8080/docs/index.html`
 
@@ -22,8 +22,8 @@ Contract: [`docs/openapi.yaml`](docs/openapi.yaml) · Interactive docs: `http://
 Everything runs in Docker; nothing but Docker and Make is required on the host.
 
 ```bash
-git clone git@github.com:<org>/ims-backend.git
-cd ims-backend
+git clone git@github.com:sabin-bhattarai/ims_backend.git
+cd ims_backend
 cp .env.example .env          # then set JWT_SECRET: openssl rand -hex 32
 
 make dev                      # Postgres + Redis + Mailpit + API + worker

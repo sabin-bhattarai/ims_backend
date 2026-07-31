@@ -1,7 +1,8 @@
 # Contributing
 
-This file is identical in all three IMS repositories — [`ims-backend`](../ims-backend),
-[`ims-web`](../ims-web) and [`ims-mobile`](../ims-mobile). If you change it in one, copy it to
+This file is identical in all three IMS repositories — [`ims_backend`](https://github.com/sabin-bhattarai/ims_backend),
+[`ims_web`](https://github.com/sabin-bhattarai/ims_web) and
+[`ims_mobile`](https://github.com/sabin-bhattarai/ims_mobile). If you change it in one, copy it to
 the other two in the same pull request.
 
 ---
@@ -134,14 +135,14 @@ make docs        # backend only, if you touched any endpoint
 
 ## 4. The API contract
 
-`ims-backend/docs/openapi.yaml` is the **single source of truth**. Nothing else defines the
+`ims_backend/docs/openapi.yaml` is the **single source of truth**. Nothing else defines the
 API shape.
 
 - Backend: any endpoint change means running `make docs` and committing the regenerated
   spec. CI regenerates it and fails the build if the committed file differs.
 - Web and mobile: **never hand-write DTOs.** Run the generator:
-  - `ims-web`: `npm run generate:api`
-  - `ims-mobile`: `./scripts/generate-api-client`
+  - `ims_web`: `npm run generate:api`
+  - `ims_mobile`: `./scripts/generate-api-client`
 - A breaking backend change needs issues opened on both client repos *before* it merges,
   and the clients pin a tagged backend version so a spec change never breaks them mid-sprint.
 
