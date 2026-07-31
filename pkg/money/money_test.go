@@ -14,8 +14,8 @@ func TestLineTotal(t *testing.T) {
 	t.Parallel()
 
 	cases := []struct {
-		name                     string
-		qty, price, disc, tax    string
+		name                        string
+		qty, price, disc, tax       string
 		wantNet, wantTax, wantTotal string
 	}{
 		{

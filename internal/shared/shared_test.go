@@ -94,9 +94,9 @@ func TestNewPageMeta(t *testing.T) {
 	t.Parallel()
 
 	cases := []struct {
-		total      int64
-		perPage    int
-		wantPages  int
+		total     int64
+		perPage   int
+		wantPages int
 	}{
 		{total: 0, perPage: 25, wantPages: 0},
 		{total: 1, perPage: 25, wantPages: 1},
