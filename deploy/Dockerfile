@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # --- build -----------------------------------------------------------------
-FROM golang:1.26-alpine AS build
+FROM golang:1.27-alpine AS build
 
 # git is needed for module fetches over VCS; ca-certificates for HTTPS.
 RUN apk add --no-cache git ca-certificates
